@@ -18,12 +18,8 @@ def get_power(line):
             num, color = num_color.split()
             num = int(num.strip())
             color = color.strip()
-            try:
-                if num > max_color.get(color, -1):
-                    max_color[color] = num
-            except:
-                import pdb; pdb.set_trace()
-                pass
+            if num > max_color.get(color, -1):
+                max_color[color] = num
     
     return max_color.get("red", 1) * max_color.get("green", 1) * max_color.get("blue", 1)
 
