@@ -1,6 +1,6 @@
 import re
 
-f = open("input_2.txt", "r")
+f = open("input.txt", "r")
 
 sum = 0
 
