@@ -20,6 +20,19 @@ int m;
 int sum1 = 0;
 int sum2 = 0;
 
+void initStars(int i) {
+    // We prepare the stars to be counted used in multiplication
+    for (int k = 0; k < m; k++) {
+        if (rows[i%3][k] == '*') {
+            stars[i%3][k] = 0;
+            prod[i%3][k] = 1;
+        } else {
+            stars[i%3][k] = -1;
+            prod[i%3][k] = 0;
+        }
+    }
+}
+
 void checkRow(int j, int n=-1) {
     int currentNum = 0;
     int hasSymbols = 0;
@@ -78,17 +91,7 @@ int main() {
             m = strlen(rows[0]);
             cout << "Length of row: " << m << endl;
         }
-
-        // We prepare the stars to be counted used in multiplication
-        for (int k = 0; k < m; k++) {
-            if (rows[i%3][k] == '*') {
-                stars[i%3][k] = 0;
-                prod[i%3][k] = 1;
-            } else {
-                stars[i%3][k] = -1;
-                prod[i%3][k] = 0;
-            }
-        }
+        initStars(i);
 
         // We will assume that we will have all neighbors for the first two
         // rows only when the first three rows have been read
