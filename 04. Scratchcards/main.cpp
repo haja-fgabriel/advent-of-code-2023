@@ -15,6 +15,9 @@
 #include <cstddef>
 #include <numeric>
 #include <optional>
+#include <ctime>
+#include <iomanip>
+#include <chrono>
 
 
 class Card {
@@ -150,11 +153,20 @@ std::istream& operator>>(std::istream& f, Solution& s) {
 }
 
 int main() {
+
+    using namespace std::literals::chrono_literals;
+
+    const std::chrono::time_point<std::chrono::steady_clock> timeBegin = std::chrono::steady_clock::now(); 
     std::ifstream f("input.txt");
     Solution s;
 
     f >> s;
     std::cout << "Part 1: " << s.solveFirst() << std::endl;
     std::cout << "Part 2: " << s.solveSecond() << std::endl;
+    
+    const std::chrono::time_point<std::chrono::steady_clock> timeEnd = std::chrono::steady_clock::now(); 
+    std::cout << "Time elapsed: " << std::fixed << std::setprecision(7) 
+        << 1.0 * std::chrono::duration_cast<std::chrono::microseconds>(timeEnd - timeBegin).count() / 1000000 << std::endl;
+        
     return 0;
 }
